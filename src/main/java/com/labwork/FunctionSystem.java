@@ -21,7 +21,17 @@ public class FunctionSystem implements FunctionInterface {
     TanImpl tan;
     SinImpl sin;
 
-
+    public FunctionSystem() {
+        ln = new LnImpl();
+        log2 = new LogImpl(2);
+        log5 = new LogImpl(5);
+        cos = new CosImpl();
+        cot = new CotImpl();
+        csc = new CscImpl();
+        sec = new SecImpl();
+        tan = new TanImpl();
+        sin = new SinImpl();
+    }
 
     public FunctionSystem(LnImpl ln, LogImpl log2, LogImpl log5, CosImpl cos, CotImpl cot, CscImpl csc, SecImpl sec, SinImpl sin){
         this.ln = ln;
