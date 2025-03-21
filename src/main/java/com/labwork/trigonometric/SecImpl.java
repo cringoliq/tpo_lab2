@@ -18,9 +18,7 @@ public class SecImpl implements FunctionInterface {
     @Override
     public double calculate(double x, double delta) {
         double cos = cosImpl.calculate(x, delta);
-        if (Math.abs(cos) < delta) {
-            throw new ArithmeticException("X can't be PI/2 * n");
-        }
+
         return 1 / cos;
     }
 }

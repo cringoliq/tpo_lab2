@@ -19,9 +19,6 @@ public class CotImpl implements FunctionInterface {
     @Override
     public double calculate(double x, double delta) {
         double sin = sinImpl.calculate(x, delta);
-        if (Math.abs(sin) < delta) {
-            throw new ArithmeticException("X can't be PI * n");
-        }
         double cos = cosImpl.calculate(x, delta);
         return cos / sin;
     }

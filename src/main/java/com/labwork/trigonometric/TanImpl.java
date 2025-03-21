@@ -21,9 +21,7 @@ public class TanImpl implements FunctionInterface {
     @Override
     public double calculate(double x, double delta) {
         double cos = cosImpl.calculate(x, delta);
-        if (Math.abs(cos) < delta) {
-            throw new ArithmeticException("X can't be PI/2 * n");
-        }
+
         double sin = sinImpl.calculate(x, delta);
         return sin / cos;
     }
