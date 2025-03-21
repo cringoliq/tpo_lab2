@@ -33,7 +33,7 @@ public class FunctionSystem implements FunctionInterface {
         sin = new SinImpl();
     }
 
-    public FunctionSystem(LnImpl ln, LogImpl log2, LogImpl log5, CosImpl cos, CotImpl cot, CscImpl csc, SecImpl sec, SinImpl sin){
+    public FunctionSystem(LnImpl ln, LogImpl log2, LogImpl log5, CosImpl cos, CotImpl cot, CscImpl csc, SecImpl sec, SinImpl sin, TanImpl tan) {
         this.ln = ln;
         this.log2 = log2;
         this.log5 = log5;
@@ -42,6 +42,7 @@ public class FunctionSystem implements FunctionInterface {
         this.csc = csc;
         this.sec = sec;
         this.sin = sin;
+        this.tan = tan;
     }
     @Override
     public double calculate(double x, double delta) {

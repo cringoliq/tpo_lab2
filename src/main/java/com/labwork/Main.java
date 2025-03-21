@@ -19,7 +19,7 @@ public class Main {
         SecImpl sec = new SecImpl(cos);
         TanImpl tan = new TanImpl(sin, cos);
 
-        FunctionSystem function = new FunctionSystem(ln, log2, log5, cos, cot, csc, sec, sin);
+        FunctionSystem function = new FunctionSystem(ln, log2, log5, cos, cot, csc, sec, sin, tan);
 
         System.out.println("Result:" + function.calculate(-10, 0.01));
 
