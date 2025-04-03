@@ -34,9 +34,14 @@ public class Main {
         csvWriter.writeResults("csc.csv", -5, 5, csc, 0.1);
 
 
+
         csvWriter.writeResults("ln.csv", 0.00001, 5, ln, 0.1);
         csvWriter.writeResults("log2.csv", 0.00001, 5, log2, 0.1);
+        csvWriter.writeResults("log3.csv", 0.00001, 5, log3, 0.1);
+
         csvWriter.writeResults("log5.csv", 0.00001, 5, log5, 0.1);
+        csvWriter.writeResults("log10.csv", 0.00001, 5, log10, 0.1);
+
         csvWriter.writeResults("system.csv", -5, 5, function, 0.1);
     }
 }
