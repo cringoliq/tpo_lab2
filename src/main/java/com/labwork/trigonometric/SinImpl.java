@@ -6,6 +6,7 @@ public class SinImpl implements FunctionInterface {
 
     @Override
     public double calculate(final double x, final double delta) {
+
         // нормализация
         double normX = x % (2 * Math.PI);
         if (normX > Math.PI) {

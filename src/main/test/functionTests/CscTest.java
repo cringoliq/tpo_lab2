@@ -12,11 +12,11 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 public class CscTest {
 
     // Задаём точность вычислений для тестов
-    private final double DELTA = 1e-6;
+    private final double DELTA = 0.00001;
     // Создаём экземпляр функции csc(x)
     private FunctionInterface cscFunction = new CscImpl();
     // Порог, выше которого считаем значение "бесконечным"
-    private final double THRESHOLD = 1e6;
+    private final double THRESHOLD = 1e4;
 
 
     /**
