@@ -57,22 +57,15 @@ public class SystemTest {
     private void fillMock(FunctionInterface function, String path) {
         try (CSVReader csvReader = new CSVReader(new FileReader(path))) {
             List<String[]> records = csvReader.readAll();
-            if (records.isEmpty()) {
-                System.out.println("Файл пустой: " + path);
-                return; // Прерываем выполнение метода, если файл пустой
-            }
 
-            records.remove(0); // Убираем заголовок
+
 
             for (String[] record : records) {
                 double x = Double.parseDouble(record[0]);
                 double res = Double.parseDouble(record[1]);
 
-                // Проверка на NaN или Infinity
 
-
-                // Мокируем вызов calculate
-                when(function.calculate(Mockito.anyDouble(), Mockito.eq(0.00001))).thenReturn(res);
+                when(function.calculate(x ,0.00001)).thenReturn(res);
             }
         } catch (IOException | CsvException e) {
             System.out.println("Ошибка при загрузке CSV: " + path);
