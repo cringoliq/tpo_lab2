@@ -14,7 +14,7 @@ class LnTest {
 
     // Проверка корректных значений
     @ParameterizedTest
-    @CsvFileSource(resources = "/ln.csv", numLinesToSkip = 1) // Пропускаем заголовок
+    @CsvFileSource(resources = "/ln.csv", numLinesToSkip = 0) // Пропускаем заголовок
     void testLnPositiveValues(double x, double expected) {
         double delta = 0.001; // Точность вычислений
         assertEquals(expected, ln.calculate(x, delta), delta);

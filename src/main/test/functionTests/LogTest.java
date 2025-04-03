@@ -13,7 +13,7 @@ class LogTest {
 
     // 🔹 Проверка вычислений логарифма с основанием 2
     @ParameterizedTest
-    @CsvFileSource(resources = "/log2.csv", numLinesToSkip = 1)
+    @CsvFileSource(resources = "/log2.csv", numLinesToSkip = 0)
     void testLogBase2FromCsvFile(double x, double expected) {
         double delta = 0.00001; // Точность вычислений
         LogImpl log = new LogImpl(2); // Логарифм по основанию 2
@@ -21,7 +21,7 @@ class LogTest {
     }
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/log3.csv", numLinesToSkip = 1)
+    @CsvFileSource(resources = "/log3.csv", numLinesToSkip = 0)
     void testLogBase3FromCsvFile(double x, double expected) {
         double delta = 0.00001; // Точность вычислений
         LogImpl log = new LogImpl(3); // Логарифм по основанию 5
@@ -30,7 +30,7 @@ class LogTest {
 
     // 🔹 Проверка вычислений логарифма с основанием 5
     @ParameterizedTest
-    @CsvFileSource(resources = "/log5.csv", numLinesToSkip = 1)
+    @CsvFileSource(resources = "/log5.csv", numLinesToSkip = 0)
     void testLogBase5FromCsvFile(double x, double expected) {
         double delta = 0.00001; // Точность вычислений
         LogImpl log = new LogImpl(5); // Логарифм по основанию 5
@@ -38,7 +38,7 @@ class LogTest {
     }
     // 🔹 Проверка вычислений логарифма с основанием 5
     @ParameterizedTest
-    @CsvFileSource(resources = "/log10.csv", numLinesToSkip = 1)
+    @CsvFileSource(resources = "/log10.csv", numLinesToSkip = 0)
     void testLogBase10FromCsvFile(double x, double expected) {
         double delta = 0.00001; // Точность вычислений
         LogImpl log = new LogImpl(10); // Логарифм по основанию 5
