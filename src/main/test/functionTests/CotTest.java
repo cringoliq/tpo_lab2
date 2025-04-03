@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 public class CotTest {
 
     // Задаём точность вычислений для тестов
-    private final double DELTA = 1e-6;
+    private final double DELTA = 1e-8;
     // Создаём экземпляр функции cot(x)
     private final FunctionInterface cotFunction = new CotImpl();
 
@@ -102,7 +102,7 @@ public class CotTest {
      */
     @ParameterizedTest
     @CsvFileSource(resources = "/cot.csv", numLinesToSkip = 1)
-    public void testCosFileSource(double x, double expected) {
+    public void testCotFileSource(double x, double expected) {
         double result = cotFunction.calculate(x, DELTA);
         System.out.printf("Testing cos(%.6f): expected %.6f, actual %.6f%n", x, expected, result);
         assertEquals(expected, result, DELTA);

@@ -107,7 +107,7 @@ public class CscTest {
      */
     @ParameterizedTest
     @CsvFileSource(resources = "/csc.csv", numLinesToSkip = 1)
-    public void testCosFileSource(double x, double expected) {
+    public void testCscFileSource(double x, double expected) {
         double result = cscFunction.calculate(x, DELTA);
         System.out.printf("Testing csc(%.6f): expected %.6f, actual %.6f%n", x, expected, result);
         assertEquals(expected, result, DELTA);

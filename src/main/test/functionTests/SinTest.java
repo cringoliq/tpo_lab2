@@ -124,7 +124,7 @@ public class SinTest {
      */
     @ParameterizedTest
     @CsvFileSource(resources = "/sin.csv", numLinesToSkip = 1)
-    public void testCosFileSource(double x, double expected) {
+    public void testSinFileSource(double x, double expected) {
         double result = sinFunction.calculate(x, DELTA);
         System.out.printf("Testing sin(%.6f): expected %.6f, actual %.6f%n", x, expected, result);
         assertEquals(expected, result, DELTA);

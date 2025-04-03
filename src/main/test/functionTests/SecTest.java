@@ -113,7 +113,7 @@ public class SecTest {
      */
     @ParameterizedTest
     @CsvFileSource(resources = "/sec.csv", numLinesToSkip = 1)
-    public void testCosFileSource(double x, double expected) {
+    public void testSecFileSource(double x, double expected) {
         double result = secFunction.calculate(x, DELTA);
         System.out.printf("Testing sec(%.6f): expected %.6f, actual %.6f%n", x, expected, result);
         assertEquals(expected, result, DELTA);

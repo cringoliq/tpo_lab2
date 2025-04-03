@@ -14,13 +14,6 @@ public class LogImpl implements FunctionInterface {
         this.base = base;
     }
 
-    public LogImpl(final LnImpl ln, double base) {
-        this.ln = ln;
-        if (base <= 0 || base == 1) {
-            throw new IllegalArgumentException("Base must be greater than zero and not equal to 1");
-        }
-        this.base = base;
-    }
 
     @Override
     public double calculate(double x, double epsilon) {
