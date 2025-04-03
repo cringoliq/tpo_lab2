@@ -2,6 +2,7 @@ package functionTests;
 
 
 import com.labwork.FunctionSystem;
+import com.labwork.interfaces.FunctionInterface;
 import com.labwork.logarithms.LnImpl;
 import com.labwork.logarithms.LogImpl;
 import com.labwork.trigonometric.*;
@@ -16,6 +17,7 @@ import org.mockito.Mockito;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -40,46 +42,54 @@ public class SystemTest {
 
     @BeforeAll
     public void fillAll() {
-        fillMock(lnMock, "src/test/resources/log/ln.csv");
-        fillMock(log2Mock, "src/test/resources/log/log2.csv");
-        fillMock(log3Mock, "src/test/resources/log/log3.csv");
-        fillMock(log5Mock, "src/test/resources/log/log5.csv");
-        fillMock(log10Mock, "src/test/resources/log/log10.csv");
-
-        fillMock(sinMock, "src/test/resources/trig/sin.csv");
-        fillMock(cosMock, "src/test/resources/trig/cos.csv");
-        fillMock(tanMock, "src/test/resources/trig/tan.csv");
-        fillMock(cotMock, "src/test/resources/trig/cot.csv");
-        fillMock(secMock, "src/test/resources/trig/sec.csv");
-        fillMock(cscMock, "src/test/resources/trig/csc.csv");
+        fillMock(lnMock, "ln.csv");
+        fillMock(log2Mock, "log2.csv");
+        fillMock(log3Mock, "log3.csv");
+        fillMock(log5Mock, "log5.csv");
+        fillMock(log10Mock, "log10.csv");
+        fillMock(sinMock, "sin.csv");
+        fillMock(cosMock, "cos.csv");
+        fillMock(tanMock, "tan.csv");
+        fillMock(cotMock, "cot.csv");
+        fillMock(secMock, "sec.csv");
+        fillMock(cscMock, "csc.csv");
     }
-
-    private <T> void fillMock(T function, String path) {
+    private void fillMock(FunctionInterface function, String path) {
         try (CSVReader csvReader = new CSVReader(new FileReader(path))) {
             List<String[]> records = csvReader.readAll();
+            if (records.isEmpty()) {
+                System.out.println("Файл пустой: " + path);
+                return; // Прерываем выполнение метода, если файл пустой
+            }
+
             records.remove(0); // Убираем заголовок
 
             for (String[] record : records) {
                 double x = Double.parseDouble(record[0]);
                 double res = Double.parseDouble(record[1]);
 
-                Mockito.when(function.getClass().getMethod("calculate", double.class, double.class)
-                                .invoke(function, x, 0.00001))
-                        .thenReturn(res);
+                // Проверка на NaN или Infinity
+
+
+                // Мокируем вызов calculate
+                when(function.calculate(Mockito.anyDouble(), Mockito.eq(0.00001))).thenReturn(res);
             }
         } catch (IOException | CsvException e) {
             System.out.println("Ошибка при загрузке CSV: " + path);
-        } catch (Exception e) {
-            System.out.println("Ошибка при мокации метода calculate: " + e.getMessage());
         }
     }
+
+
 
 
     private void runTest(FunctionSystem functionSystem, Double x, Double trueResult) {
         try {
             double result = functionSystem.calculate(x, 0.00001);
+            System.out.println("Testing value x: " + x + ", calculated result: " + result);
             assertEquals(trueResult, result, 0.0001);
         } catch (ArithmeticException e) {
+            System.out.println("Error with value x: " + x + " -> " + e.getMessage());
+
             assertEquals("Wrong x", e.getMessage());
         }
     }
