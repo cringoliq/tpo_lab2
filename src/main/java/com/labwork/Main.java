@@ -1,8 +1,7 @@
 package com.labwork;
 
 
-import com.labwork.logarithms.LnImpl;
-import com.labwork.logarithms.LogImpl;
+import com.labwork.logarithms.*;
 import com.labwork.trigonometric.*;
 
 public class Main {
@@ -10,10 +9,10 @@ public class Main {
 
 
         LnImpl ln = new LnImpl();
-        LogImpl log2 = new LogImpl(2);
-        LogImpl log5 = new LogImpl(5);
-        LogImpl log3 = new LogImpl(3);
-        LogImpl log10 = new LogImpl(10);
+        Log2Impl log2 = new Log2Impl();
+        Log5Impl log5 = new Log5Impl();
+        Log3Impl log3 = new Log3Impl();
+        Log10Impl log10 = new Log10Impl();
         SinImpl sin = new SinImpl();
         CosImpl cos = new CosImpl(sin);
         CotImpl cot = new CotImpl(sin, cos);
@@ -26,22 +25,22 @@ public class Main {
 
 
         CsvWriter csvWriter = new CsvWriter();
-        csvWriter.writeResults("sin.csv", -5, 5, sin, 0.1);
-        csvWriter.writeResults("cos.csv", -5, 5, cos, 0.1);
-        csvWriter.writeResults("sec.csv", -5, 5, sec, 0.1);
-        csvWriter.writeResults("cot.csv", -5, 5, cot, 0.1);
-        csvWriter.writeResults("tan.csv", -5, 5, tan, 0.1);
-        csvWriter.writeResults("csc.csv", -5, 5, csc, 0.1);
+        csvWriter.writeResults("sin.csv", -5, 5, sin, 0.25);
+        csvWriter.writeResults("cos.csv", -5, 5, cos, 0.25);
+        csvWriter.writeResults("sec.csv", -5, 5, sec, 0.25);
+        csvWriter.writeResults("cot.csv", -5, 5, cot, 0.25);
+        csvWriter.writeResults("tan.csv", -5, 5, tan, 0.25);
+        csvWriter.writeResults("csc.csv", -5, 5, csc, 0.25);
 
 
 
-        csvWriter.writeResults("ln.csv", 0.00001, 5, ln, 0.1);
-        csvWriter.writeResults("log2.csv", 0.00001, 5, log2, 0.1);
-        csvWriter.writeResults("log3.csv", 0.00001, 5, log3, 0.1);
+        csvWriter.writeResults("ln.csv", 0.00001, 5, ln, 0.25);
+        csvWriter.writeResults("log2.csv", 0.00001, 5, log2, 0.25);
+        csvWriter.writeResults("log3.csv", 0.00001, 5, log3, 0.25);
 
-        csvWriter.writeResults("log5.csv", 0.00001, 5, log5, 0.1);
-        csvWriter.writeResults("log10.csv", 0.00001, 5, log10, 0.1);
+        csvWriter.writeResults("log5.csv", 0.00001, 5, log5, 0.25);
+        csvWriter.writeResults("log10.csv", 0.00001, 5, log10, 0.25);
 
-        csvWriter.writeResults("system.csv", -5, 5, function, 0.1);
+        csvWriter.writeResults("system.csv", -5, 5, function, 0.25);
     }
 }

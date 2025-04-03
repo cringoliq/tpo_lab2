@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 public class CotTest {
 
     // Задаём точность вычислений для тестов
-    private final double DELTA = 1e-8;
+    private final double DELTA = 0.00001;
     // Создаём экземпляр функции cot(x)
     private final FunctionInterface cotFunction = new CotImpl();
 

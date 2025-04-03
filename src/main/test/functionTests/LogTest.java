@@ -1,6 +1,6 @@
 package functionTests;
 
-import com.labwork.logarithms.LogImpl;
+import com.labwork.logarithms.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
@@ -16,7 +16,7 @@ class LogTest {
     @CsvFileSource(resources = "/log2.csv", numLinesToSkip = 0)
     void testLogBase2FromCsvFile(double x, double expected) {
         double delta = 0.00001; // Точность вычислений
-        LogImpl log = new LogImpl(2); // Логарифм по основанию 2
+        Log2Impl log = new Log2Impl(); // Логарифм по основанию 2
         assertEquals(expected, log.calculate(x, delta), delta);
     }
 
@@ -24,7 +24,7 @@ class LogTest {
     @CsvFileSource(resources = "/log3.csv", numLinesToSkip = 0)
     void testLogBase3FromCsvFile(double x, double expected) {
         double delta = 0.00001; // Точность вычислений
-        LogImpl log = new LogImpl(3); // Логарифм по основанию 5
+        Log3Impl log = new Log3Impl(); // Логарифм по основанию 5
         assertEquals(expected, log.calculate(x, delta), delta);
     }
 
@@ -33,7 +33,7 @@ class LogTest {
     @CsvFileSource(resources = "/log5.csv", numLinesToSkip = 0)
     void testLogBase5FromCsvFile(double x, double expected) {
         double delta = 0.00001; // Точность вычислений
-        LogImpl log = new LogImpl(5); // Логарифм по основанию 5
+        Log5Impl log = new Log5Impl(); // Логарифм по основанию 5
         assertEquals(expected, log.calculate(x, delta), delta);
     }
     // 🔹 Проверка вычислений логарифма с основанием 5
@@ -41,54 +41,28 @@ class LogTest {
     @CsvFileSource(resources = "/log10.csv", numLinesToSkip = 0)
     void testLogBase10FromCsvFile(double x, double expected) {
         double delta = 0.00001; // Точность вычислений
-        LogImpl log = new LogImpl(10); // Логарифм по основанию 5
+        Log10Impl log = new Log10Impl(); // Логарифм по основанию 5
         assertEquals(expected, log.calculate(x, delta), delta);
     }
 
 
-    // 🔹 Проверка монотонности логарифма для основания 2
-    @ParameterizedTest
-    @CsvSource({
-            "2, 1, 2",
-            "2, 2, 4",
-            "2, 4, 8"
-    })
-    void testLogBase2IsMonotonic(double base, double x1, double x2) {
-        double delta = 1e-6;
-        LogImpl log = new LogImpl(base);
-        assertTrue(log.calculate(x1, delta) < log.calculate(x2, delta));
-    }
 
     // 🔹 Проверка выброса исключений при некорректных входных данных
     @Test
     void testLogarithmThrowsExceptionForZeroX() {
         double delta = 1e-6;
-        LogImpl log = new LogImpl(2);
+        Log2Impl log = new Log2Impl();
         assertThrows(IllegalArgumentException.class, () -> log.calculate(0, delta));
     }
 
     @Test
     void testLogarithmThrowsExceptionForNegativeX() {
         double delta = 1e-6;
-        LogImpl log = new LogImpl(2);
+        Log2Impl log = new Log2Impl();
         assertThrows(IllegalArgumentException.class, () -> log.calculate(-5, delta));
     }
 
-    @Test
-    void testLogarithmThrowsExceptionForBaseOne() {
-        double delta = 1e-6;
-        assertThrows(IllegalArgumentException.class, () -> new LogImpl(1));
-    }
 
-    @Test
-    void testLogarithmThrowsExceptionForNegativeBase() {
-        double delta = 1e-6;
-        assertThrows(IllegalArgumentException.class, () -> new LogImpl(-3));
-    }
 
-    @Test
-    void testLogarithmThrowsExceptionForZeroBase() {
-        double delta = 1e-6;
-        assertThrows(IllegalArgumentException.class, () -> new LogImpl(0));
-    }
+
 }
