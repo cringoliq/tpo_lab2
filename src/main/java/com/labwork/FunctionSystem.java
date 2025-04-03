@@ -51,6 +51,8 @@ public class FunctionSystem implements FunctionInterface {
     }
     @Override
     public double calculate(double x, double delta) {
+        System.out.println("🔎 FunctionSystem: calculate(" + x + ", " + delta + ")");
+
         if(x<=0){
                return (((((Math.pow(((csc.calculate(x,delta) - tan.calculate(x,delta)) / csc.calculate(x,delta)) ,2)) * (cot.calculate(x,delta) + csc.calculate(x,delta))) * cos.calculate(x,delta)) + (sec.calculate(x,delta) * cot.calculate(x,delta))) / tan.calculate(x,delta));
         }

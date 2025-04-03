@@ -20,6 +20,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyDouble;
+import static org.mockito.ArgumentMatchers.doubleThat;
 import static org.mockito.Mockito.when;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -58,19 +60,24 @@ public class SystemTest {
         try (CSVReader csvReader = new CSVReader(new FileReader(path))) {
             List<String[]> records = csvReader.readAll();
 
-
-
             for (String[] record : records) {
-                double x = Double.parseDouble(record[0]);
-                double res = Double.parseDouble(record[1]);
+                try {
+                    double x = Double.parseDouble(record[0]);
+                    double res = Double.parseDouble(record[1]);
 
+                    System.out.println("✅ Mocking: " + function.getClass().getSimpleName() + " x = " + x + ", result = " + res);
 
-                when(function.calculate(x ,0.00001)).thenReturn(res);
+                    when(function.calculate(doubleThat(val -> Math.abs(val - x) < 1e-9), anyDouble())).thenReturn(res);
+
+                } catch (NumberFormatException e) {
+                    System.out.println("❌ Ошибка парсинга в файле " + path + ": " + record[0] + ", " + record[1]);
+                }
             }
         } catch (IOException | CsvException e) {
-            System.out.println("Ошибка при загрузке CSV: " + path);
+            System.out.println("❌ Ошибка при загрузке CSV: " + path);
         }
     }
+
 
 
 

@@ -25,22 +25,22 @@ public class Main {
 
 
         CsvWriter csvWriter = new CsvWriter();
-        csvWriter.writeResults("sin.csv", -5, 5, sin, 0.25);
-        csvWriter.writeResults("cos.csv", -5, 5, cos, 0.25);
-        csvWriter.writeResults("sec.csv", -5, 5, sec, 0.25);
-        csvWriter.writeResults("cot.csv", -5, 5, cot, 0.25);
-        csvWriter.writeResults("tan.csv", -5, 5, tan, 0.25);
-        csvWriter.writeResults("csc.csv", -5, 5, csc, 0.25);
+        csvWriter.writeResults("sin.csv", -5, 5, sin, 0.1);
+        csvWriter.writeResults("cos.csv", -5, 5, cos, 0.1);
+        csvWriter.writeResults("sec.csv", -5, 5, sec, 0.1);
+        csvWriter.writeResults("cot.csv", -5, 5, cot, 0.1);
+        csvWriter.writeResults("tan.csv", -5, 5, tan, 0.1);
+        csvWriter.writeResults("csc.csv", -5, 5, csc, 0.1);
 
 
 
-        csvWriter.writeResults("ln.csv", 0.00001, 5, ln, 0.25);
-        csvWriter.writeResults("log2.csv", 0.00001, 5, log2, 0.25);
-        csvWriter.writeResults("log3.csv", 0.00001, 5, log3, 0.25);
+        csvWriter.writeResults("ln.csv", 0.1, 5, ln, 0.1);
+        csvWriter.writeResults("log2.csv", 0.1, 5, log2, 0.1);
+        csvWriter.writeResults("log3.csv", 0.1, 5, log3, 0.1);
 
-        csvWriter.writeResults("log5.csv", 0.00001, 5, log5, 0.25);
-        csvWriter.writeResults("log10.csv", 0.00001, 5, log10, 0.25);
+        csvWriter.writeResults("log5.csv", 0.1, 5, log5, 0.1);
+        csvWriter.writeResults("log10.csv", 0.1, 5, log10, 0.1);
 
-        csvWriter.writeResults("system.csv", -5, 5, function, 0.25);
+        csvWriter.writeResults("system.csv", -5, 5, function, 0.1);
     }
 }

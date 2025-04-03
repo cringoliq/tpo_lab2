@@ -15,6 +15,7 @@ public class CsvWriter {
             for (double x = start; x <= end; x += step) {
                 double result = func.calculate(x, EPSILON);
                 if (Double.isNaN(result)) {
+                    System.out.println("NaN - x:" + x + " result:" + result);
                     continue;
                 }
                 writer.write(x + "," + result + "\n");
