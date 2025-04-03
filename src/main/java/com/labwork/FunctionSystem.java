@@ -1,8 +1,7 @@
 package com.labwork;
 
 import com.labwork.interfaces.FunctionInterface;
-import com.labwork.logarithms.LnImpl;
-import com.labwork.logarithms.LogImpl;
+import com.labwork.logarithms.*;
 import com.labwork.trigonometric.*;
 
 import com.labwork.trigonometric.CosImpl;
@@ -12,10 +11,10 @@ import com.labwork.trigonometric.SinImpl;
 public class FunctionSystem implements FunctionInterface {
 
     LnImpl ln;
-    LogImpl log2;
-    LogImpl log5;
-    LogImpl log10;
-    LogImpl log3;
+    Log2Impl log2;
+    Log5Impl log5;
+    Log10Impl log10;
+    Log3Impl log3;
     CosImpl cos;
     CotImpl cot;
     CscImpl csc;
@@ -25,10 +24,10 @@ public class FunctionSystem implements FunctionInterface {
 
     public FunctionSystem() {
         ln = new LnImpl();
-        log2 = new LogImpl(2);
-        log5 = new LogImpl(5);
-        log3 = new LogImpl(3);
-        log10 = new LogImpl(10);
+        log2 = new Log2Impl();
+        log5 = new Log5Impl();
+        log3 = new Log3Impl();
+        log10 = new Log10Impl();
         cos = new CosImpl();
         cot = new CotImpl();
         csc = new CscImpl();
@@ -37,7 +36,7 @@ public class FunctionSystem implements FunctionInterface {
         sin = new SinImpl();
     }
 
-    public FunctionSystem(LnImpl ln, LogImpl log2,LogImpl log3, LogImpl log5, LogImpl log10, CosImpl cos, CotImpl cot, CscImpl csc, SecImpl sec, SinImpl sin, TanImpl tan) {
+    public FunctionSystem(LnImpl ln, Log2Impl log2,Log3Impl log3, Log5Impl log5, Log10Impl log10, CosImpl cos, CotImpl cot, CscImpl csc, SecImpl sec, SinImpl sin, TanImpl tan) {
         this.ln = ln;
         this.log2 = log2;
         this.log5 = log5;
@@ -54,9 +53,6 @@ public class FunctionSystem implements FunctionInterface {
     public double calculate(double x, double delta) {
         if(x<=0){
                return (((((Math.pow(((csc.calculate(x,delta) - tan.calculate(x,delta)) / csc.calculate(x,delta)) ,2)) * (cot.calculate(x,delta) + csc.calculate(x,delta))) * cos.calculate(x,delta)) + (sec.calculate(x,delta) * cot.calculate(x,delta))) / tan.calculate(x,delta));
-
-        //    return (((((((csc.calculate(x,delta) - tan.calculate(x,delta)) / csc.calculate(x,delta)) ^ 2) * (cot.calculate(x,delta) + csc.calculate(x,delta))) * cos.calculate(x,delta)) + (sec.calculate(x,delta) * cot.calculate(x,delta))) / tan.calculate(x,delta));
-
         }
         else{
             return (((((log5.calculate(x, delta) - log3.calculate(x, delta)) - log10.calculate(x, delta)) + log3.calculate(x, delta)) / (log2.calculate(x, delta) * (log3.calculate(x, delta) / (log10.calculate(x, delta) * ln.calculate(x, delta))))) * (log10.calculate(x, delta) + (ln.calculate(x, delta) - log2.calculate(x, delta))));

@@ -3,8 +3,7 @@ package functionTests;
 
 import com.labwork.FunctionSystem;
 import com.labwork.interfaces.FunctionInterface;
-import com.labwork.logarithms.LnImpl;
-import com.labwork.logarithms.LogImpl;
+import com.labwork.logarithms.*;
 import com.labwork.trigonometric.*;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
@@ -26,22 +25,23 @@ import static org.mockito.Mockito.when;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class SystemTest {
     // Отдельные моки для каждой функции
-    private LnImpl lnMock = Mockito.mock(LnImpl.class);
-    private LogImpl log2Mock = Mockito.mock(LogImpl.class);
-    private LogImpl log3Mock = Mockito.mock(LogImpl.class);
-    private LogImpl log5Mock = Mockito.mock(LogImpl.class);
-    private LogImpl log10Mock = Mockito.mock(LogImpl.class);
+    private final LnImpl lnMock = Mockito.mock(LnImpl.class);
+    private final Log2Impl log2Mock = Mockito.mock(Log2Impl.class);
+    private final Log3Impl log3Mock = Mockito.mock(Log3Impl.class);
+    private final Log5Impl log5Mock = Mockito.mock(Log5Impl.class);
+    private final Log10Impl log10Mock = Mockito.mock(Log10Impl.class);
 
-    private SinImpl sinMock = Mockito.mock(SinImpl.class);
-    private CosImpl cosMock = Mockito.mock(CosImpl.class);
-    private TanImpl tanMock = Mockito.mock(TanImpl.class);
-    private CotImpl cotMock = Mockito.mock(CotImpl.class);
-    private SecImpl secMock = Mockito.mock(SecImpl.class);
-    private CscImpl cscMock = Mockito.mock(CscImpl.class);
+    private final SinImpl sinMock = Mockito.mock(SinImpl.class);
+    private final CosImpl cosMock = Mockito.mock(CosImpl.class);
+    private final TanImpl tanMock = Mockito.mock(TanImpl.class);
+    private final CotImpl cotMock = Mockito.mock(CotImpl.class);
+    private final SecImpl secMock = Mockito.mock(SecImpl.class);
+    private final CscImpl cscMock = Mockito.mock(CscImpl.class);
 
 
     @BeforeAll
     public void fillAll() {
+
         fillMock(lnMock, "ln.csv");
         fillMock(log2Mock, "log2.csv");
         fillMock(log3Mock, "log3.csv");
@@ -79,7 +79,7 @@ public class SystemTest {
         try {
             double result = functionSystem.calculate(x, 0.00001);
             System.out.println("Testing value x: " + x + ", calculated result: " + result);
-            assertEquals(trueResult, result, 0.0001);
+            assertEquals(trueResult, result, 0.00001);
         } catch (ArithmeticException e) {
             System.out.println("Error with value x: " + x + " -> " + e.getMessage());
 
@@ -100,7 +100,7 @@ public class SystemTest {
     @CsvFileSource(resources = "/system.csv")
     void logTest(Double x, Double trueResult) {
 
-        FunctionSystem functionSystem = new FunctionSystem(new LnImpl(),new LogImpl(2),new LogImpl(3),new LogImpl(5), new LogImpl(10), cosMock, cotMock, cscMock, secMock, sinMock, tanMock);
+        FunctionSystem functionSystem = new FunctionSystem(new LnImpl(),new Log2Impl(),new Log3Impl(),new Log5Impl(), new Log10Impl(), cosMock, cotMock, cscMock, secMock, sinMock, tanMock);
 
         runTest(functionSystem, x, trueResult);
     }
@@ -117,7 +117,7 @@ public class SystemTest {
     @CsvFileSource(resources = "/system.csv")
     void fullTest(Double x, Double trueResult) {
 
-        FunctionSystem functionSystem = new FunctionSystem(new LnImpl(),new LogImpl(2),new LogImpl(3),new LogImpl(5), new LogImpl(10), new CosImpl(), new CotImpl(), new CscImpl(), new SecImpl(), new SinImpl(), new TanImpl());
+        FunctionSystem functionSystem = new FunctionSystem(new LnImpl(),new Log2Impl(),new Log3Impl(),new Log5Impl(), new Log10Impl(), new CosImpl(), new CotImpl(), new CscImpl(), new SecImpl(), new SinImpl(), new TanImpl());
 
         runTest(functionSystem, x, trueResult);
     }
