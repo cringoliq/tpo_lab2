@@ -5,6 +5,8 @@ import static org.junit.Assert.assertEquals;
 import com.labwork.trigonometric.SinImpl;
 import org.junit.Test;
 import com.labwork.interfaces.FunctionInterface;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
 public class SinTest {
 
@@ -115,5 +117,16 @@ public class SinTest {
             System.out.println("Testing sin(" + x + "): expected " + expected + ", actual " + result);
             assertEquals("sin(" + x + ") должен быть " + expected, expected, result, DELTA);
         }
+    }
+    /**
+     * Тестирование табличных значений: задаём массив пар {x, ожидаемое значение sin(x)}
+     * и проверяем вычисления для набора типовых точек from CSV file.
+     */
+    @ParameterizedTest
+    @CsvFileSource(resources = "/sin.csv", numLinesToSkip = 1)
+    public void testCosFileSource(double x, double expected) {
+        double result = sinFunction.calculate(x, DELTA);
+        System.out.printf("Testing sin(%.6f): expected %.6f, actual %.6f%n", x, expected, result);
+        assertEquals(expected, result, DELTA);
     }
 }

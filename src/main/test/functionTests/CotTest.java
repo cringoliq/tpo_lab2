@@ -6,6 +6,8 @@ import static org.junit.Assert.assertTrue;
 import com.labwork.trigonometric.CotImpl;
 import org.junit.Test;
 import com.labwork.interfaces.FunctionInterface;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
 public class CotTest {
 
@@ -93,6 +95,17 @@ public class CotTest {
             System.out.println("Testing cot(" + x + "): expected " + expected + ", actual " + result);
             assertEquals("cot(" + x + ") должен быть " + expected, expected, result, DELTA);
         }
+    }
+    /**
+     * Тестирование табличных значений: задаём массив пар {x, ожидаемое значение cot(x)}
+     * и проверяем вычисления для набора типовых точек from CSV file.
+     */
+    @ParameterizedTest
+    @CsvFileSource(resources = "/cot.csv", numLinesToSkip = 1)
+    public void testCosFileSource(double x, double expected) {
+        double result = cotFunction.calculate(x, DELTA);
+        System.out.printf("Testing cos(%.6f): expected %.6f, actual %.6f%n", x, expected, result);
+        assertEquals(expected, result, DELTA);
     }
 
     /**

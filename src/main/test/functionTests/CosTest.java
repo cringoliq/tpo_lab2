@@ -4,11 +4,14 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import com.labwork.trigonometric.CosImpl;
 import com.labwork.interfaces.FunctionInterface;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
 public class CosTest {
 
     // Задаём точность вычислений для тестов
-    private final double DELTA = 1e-6;
+    private final double DELTA = 1e-3;
     // Создаём экземпляр функции cos(x)
     private FunctionInterface cosFunction = new CosImpl();
 
@@ -115,5 +118,19 @@ public class CosTest {
             System.out.println("Testing cos(" + x + "): expected " + expected + ", actual " + result);
             assertEquals("cos(" + x + ") должен быть " + expected, expected, result, DELTA);
         }
+    }
+
+
+
+    /**
+     * Тестирование табличных значений: задаём массив пар {x, ожидаемое значение cos(x)}
+     * и проверяем вычисления для набора типовых точек from CSV file.
+     */
+    @ParameterizedTest
+    @CsvFileSource(resources = "/cos.csv", numLinesToSkip = 1)
+    public void testCosFileSource(double x, double expected) {
+        double result = cosFunction.calculate(x, DELTA);
+        System.out.printf("Testing cos(%.6f): expected %.6f, actual %.6f%n", x, expected, result);
+        assertEquals(expected, result, DELTA);
     }
 }

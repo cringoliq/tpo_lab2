@@ -6,6 +6,8 @@ import static org.junit.Assert.assertTrue;
 import com.labwork.trigonometric.TanImpl;
 import org.junit.Test;
 import com.labwork.interfaces.FunctionInterface;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
 public class TanTest {
 
@@ -65,6 +67,17 @@ public class TanTest {
             System.out.println("Testing tan(" + x + "): expected " + expected + ", actual " + result);
             assertEquals("tan(" + x + ") должен быть " + expected, expected, result, DELTA);
         }
+    }
+    /**
+     * Тестирование табличных значений: задаём массив пар {x, ожидаемое значение tan(x)}
+     * и проверяем вычисления для набора типовых точек from CSV file.
+     */
+    @ParameterizedTest
+    @CsvFileSource(resources = "/tan.csv", numLinesToSkip = 1)
+    public void testCosFileSource(double x, double expected) {
+        double result = tanFunction.calculate(x, DELTA);
+        System.out.printf("Testing cos(%.6f): expected %.6f, actual %.6f%n", x, expected, result);
+        assertEquals(expected, result, DELTA);
     }
 
     /**

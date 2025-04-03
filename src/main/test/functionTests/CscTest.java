@@ -6,6 +6,8 @@ import static org.junit.Assert.assertTrue;
 import com.labwork.trigonometric.CscImpl;
 import org.junit.Test;
 import com.labwork.interfaces.FunctionInterface;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
 public class CscTest {
 
@@ -97,6 +99,18 @@ public class CscTest {
             System.out.println("Testing csc(" + x + "): expected " + expected + ", actual " + result);
             assertEquals("csc(" + x + ") должен быть " + expected, expected, result, DELTA);
         }
+    }
+
+    /**
+     * Тестирование табличных значений: задаём массив пар {x, ожидаемое значение csc(x)}
+     * и проверяем вычисления для набора типовых точек from CSV file.
+     */
+    @ParameterizedTest
+    @CsvFileSource(resources = "/csc.csv", numLinesToSkip = 1)
+    public void testCosFileSource(double x, double expected) {
+        double result = cscFunction.calculate(x, DELTA);
+        System.out.printf("Testing csc(%.6f): expected %.6f, actual %.6f%n", x, expected, result);
+        assertEquals(expected, result, DELTA);
     }
 
     /**

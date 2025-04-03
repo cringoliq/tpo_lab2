@@ -6,6 +6,8 @@ import static org.junit.Assert.assertTrue;
 import com.labwork.trigonometric.SecImpl;
 import org.junit.Test;
 import com.labwork.interfaces.FunctionInterface;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
 public class SecTest {
 
@@ -104,6 +106,17 @@ public class SecTest {
                 assertEquals("sec(" + x + ") должен быть " + expected, expected, result, DELTA);
             }
         }
+    }
+    /**
+     * Тестирование табличных значений: задаём массив пар {x, ожидаемое значение sec(x)}
+     * и проверяем вычисления для набора типовых точек from CSV file.
+     */
+    @ParameterizedTest
+    @CsvFileSource(resources = "/sec.csv", numLinesToSkip = 1)
+    public void testCosFileSource(double x, double expected) {
+        double result = secFunction.calculate(x, DELTA);
+        System.out.printf("Testing sec(%.6f): expected %.6f, actual %.6f%n", x, expected, result);
+        assertEquals(expected, result, DELTA);
     }
 
     /**

@@ -12,6 +12,8 @@ public class Main {
         LnImpl ln = new LnImpl();
         LogImpl log2 = new LogImpl(2);
         LogImpl log5 = new LogImpl(5);
+        LogImpl log3 = new LogImpl(3);
+        LogImpl log10 = new LogImpl(10);
         SinImpl sin = new SinImpl();
         CosImpl cos = new CosImpl(sin);
         CotImpl cot = new CotImpl(sin, cos);
@@ -19,9 +21,8 @@ public class Main {
         SecImpl sec = new SecImpl(cos);
         TanImpl tan = new TanImpl(sin, cos);
 
-        FunctionSystem function = new FunctionSystem(ln, log2, log5, cos, cot, csc, sec, sin, tan);
-
-        System.out.println("Result:" + function.calculate(-10, 0.01));
+        FunctionSystem function = new FunctionSystem(ln, log2, log3, log5, log10, cos, cot, csc, sec, sin, tan);
+        System.out.println("Result:" + function.calculate(-7, 0.0001));
 
 
         CsvWriter csvWriter = new CsvWriter();

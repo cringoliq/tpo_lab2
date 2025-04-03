@@ -14,6 +14,8 @@ public class FunctionSystem implements FunctionInterface {
     LnImpl ln;
     LogImpl log2;
     LogImpl log5;
+    LogImpl log10;
+    LogImpl log3;
     CosImpl cos;
     CotImpl cot;
     CscImpl csc;
@@ -25,6 +27,8 @@ public class FunctionSystem implements FunctionInterface {
         ln = new LnImpl();
         log2 = new LogImpl(2);
         log5 = new LogImpl(5);
+        log3 = new LogImpl(3);
+        log10 = new LogImpl(10);
         cos = new CosImpl();
         cot = new CotImpl();
         csc = new CscImpl();
@@ -33,10 +37,12 @@ public class FunctionSystem implements FunctionInterface {
         sin = new SinImpl();
     }
 
-    public FunctionSystem(LnImpl ln, LogImpl log2, LogImpl log5, CosImpl cos, CotImpl cot, CscImpl csc, SecImpl sec, SinImpl sin, TanImpl tan) {
+    public FunctionSystem(LnImpl ln, LogImpl log2,LogImpl log3, LogImpl log5, LogImpl log10, CosImpl cos, CotImpl cot, CscImpl csc, SecImpl sec, SinImpl sin, TanImpl tan) {
         this.ln = ln;
         this.log2 = log2;
         this.log5 = log5;
+        this.log3 = log3;
+        this.log10 = log10;
         this.cos = cos;
         this.cot = cot;
         this.csc = csc;
@@ -47,20 +53,18 @@ public class FunctionSystem implements FunctionInterface {
     @Override
     public double calculate(double x, double delta) {
         if(x<=0){
-            return (Math.pow(((Math.pow((Math.pow(((((Math.pow((((((Math.pow((tan.calculate(x, delta) + cos.calculate(x,delta)), 3)) + cot.calculate(x, delta)) - (tan.calculate(x, delta) - csc.calculate(x, delta))) - sec.calculate(x, delta)) - csc.calculate(x, delta)), 3)) + (csc.calculate(x, delta) / Math.pow((cot.calculate(x, delta)), 2))) -
-                    ((cos.calculate(x, delta) + (Math.pow((sin.calculate(x, delta) / cot.calculate(x, delta)), 3))) - csc.calculate(x, delta))) + (Math.pow(sin.calculate(x, delta), 3))), 2))
-                    / (sec.calculate(x, delta) * (sin.calculate(x, delta) * sin.calculate(x, delta))),2))) / ((Math.pow(sin.calculate(x, delta),3) - sec.calculate(x, delta)) +
-                    ((csc.calculate(x, delta) / cos.calculate(x, delta)) * ((((cos.calculate(x, delta) * (cos.calculate(x, delta) / cot.calculate(x, delta))) + sec.calculate(x, delta)) - (Math.pow((sin.calculate(x, delta) * csc.calculate(x, delta)),2)))
-                            - ((tan.calculate(x, delta) + tan.calculate(x, delta)) * (Math.pow((cos.calculate(x, delta) * csc.calculate(x, delta)),3))))))
-                    - (Math.pow((sec.calculate(x, delta) + sin.calculate(x, delta)),3)),2)) / (sin.calculate(x, delta) + ((((Math.pow(cos.calculate(x, delta), 2)) - ((cos.calculate(x, delta) + tan.calculate(x, delta))
-                    - (csc.calculate(x, delta) - csc.calculate(x, delta)))) / csc.calculate(x, delta)) * (cos.calculate(x, delta) / ((cot.calculate(x, delta) *
-                    ((((sec.calculate(x, delta) + cot.calculate(x, delta)) - sec.calculate(x, delta)) * csc.calculate(x, delta)) / (sec.calculate(x, delta) / sin.calculate(x, delta)))) * ((sin.calculate(x, delta) + cot.calculate(x, delta))
-                    / csc.calculate(x, delta))))) * (cot.calculate(x, delta) * (cot.calculate(x, delta) * (((cot.calculate(x, delta) / cot.calculate(x, delta)) +
-                    (cot.calculate(x, delta) - Math.pow((Math.pow((cos.calculate(x, delta)),2)) ,3) / sec.calculate(x, delta)))))));
+               return (((((Math.pow(((csc.calculate(x,delta) - tan.calculate(x,delta)) / csc.calculate(x,delta)) ,2)) * (cot.calculate(x,delta) + csc.calculate(x,delta))) * cos.calculate(x,delta)) + (sec.calculate(x,delta) * cot.calculate(x,delta))) / tan.calculate(x,delta));
+
+        //    return (((((((csc.calculate(x,delta) - tan.calculate(x,delta)) / csc.calculate(x,delta)) ^ 2) * (cot.calculate(x,delta) + csc.calculate(x,delta))) * cos.calculate(x,delta)) + (sec.calculate(x,delta) * cot.calculate(x,delta))) / tan.calculate(x,delta));
+
         }
         else{
-            return (((((log5.calculate(x, delta) - ln.calculate(x, delta)) - log5.calculate(x, delta)) / ln.calculate(x, delta)) / log2.calculate(x, delta))
-                    * (log2.calculate(x, delta) * Math.pow(log5.calculate(x, delta) * (log2.calculate(x, delta) - ln.calculate(x, delta)), 3)));
+            return (((((log5.calculate(x, delta) - log3.calculate(x, delta)) - log10.calculate(x, delta)) + log3.calculate(x, delta)) / (log2.calculate(x, delta) * (log3.calculate(x, delta) / (log10.calculate(x, delta) * ln.calculate(x, delta))))) * (log10.calculate(x, delta) + (ln.calculate(x, delta) - log2.calculate(x, delta))));
         }
     }
+
+
+
+
+
 }
