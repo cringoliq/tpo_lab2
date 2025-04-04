@@ -2,7 +2,6 @@ package inequationIntegrationTests;
 
 import com.labwork.FunctionSystem;
 import com.labwork.interfaces.FunctionInterface;
-import com.labwork.logarithms.*;
 import com.labwork.trigonometric.*;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
@@ -22,7 +21,7 @@ import static org.mockito.ArgumentMatchers.doubleThat;
 import static org.mockito.Mockito.when;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class TrigonometryIntegration {
+public class TrigPartTest {
     private final SinImpl sinMock = Mockito.mock(SinImpl.class);
     private final CosImpl cosMock = Mockito.mock(CosImpl.class);
     private final TanImpl tanMock = Mockito.mock(TanImpl.class);
@@ -79,7 +78,7 @@ public class TrigonometryIntegration {
     @CsvFileSource(resources = "/trigPart.csv")
     void cosMockTest(Double x, Double trueResult) {
 
-        FunctionSystem functionSystem = new FunctionSystem(new LnImpl(), new Log2Impl(), new Log3Impl(), new Log5Impl(), new Log10Impl(), cosMock, new CotImpl(), new CscImpl(), new SecImpl(), new SinImpl(), new TanImpl());
+        FunctionSystem functionSystem = new FunctionSystem(new CosImpl(),cotMock, cscMock, secMock, sinMock, tanMock);
 
         runTest(functionSystem, x, trueResult);
     }
@@ -88,7 +87,16 @@ public class TrigonometryIntegration {
     @CsvFileSource(resources = "/trigPart.csv")
     void cotMockTest(Double x, Double trueResult) {
 
-        FunctionSystem functionSystem = new FunctionSystem(new LnImpl(), new Log2Impl(), new Log3Impl(), new Log5Impl(), new Log10Impl(), new CosImpl(), cotMock, new CscImpl(), new SecImpl(), new SinImpl(), new TanImpl());
+        FunctionSystem functionSystem = new FunctionSystem( cosMock, new CotImpl(),cscMock, secMock, sinMock,tanMock);
+
+        runTest(functionSystem, x, trueResult);
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/trigPart.csv")
+    void cotMockParamTest(Double x, Double trueResult) {
+
+        FunctionSystem functionSystem = new FunctionSystem( cosMock, new CotImpl(sinMock,cosMock),cscMock, secMock, sinMock,tanMock);
 
         runTest(functionSystem, x, trueResult);
     }
@@ -96,21 +104,39 @@ public class TrigonometryIntegration {
     @ParameterizedTest
     @CsvFileSource(resources = "/trigPart.csv")
     void cscMockTest(Double x, Double trueResult) {
-        FunctionSystem functionSystem = new FunctionSystem(new LnImpl(), new Log2Impl(), new Log3Impl(), new Log5Impl(), new Log10Impl(), new CosImpl(), new CotImpl(), cscMock, new SecImpl(), new SinImpl(), new TanImpl());
+        FunctionSystem functionSystem = new FunctionSystem( cosMock, cotMock, new CscImpl(), secMock, sinMock, tanMock);
 
         runTest(functionSystem, x, trueResult);
     }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/trigPart.csv")
+    void cscMockParamTest(Double x, Double trueResult) {
+        FunctionSystem functionSystem = new FunctionSystem( cosMock, cotMock, new CscImpl(sinMock), secMock, sinMock, tanMock);
+
+        runTest(functionSystem, x, trueResult);
+    }
+
     @ParameterizedTest
     @CsvFileSource(resources = "/trigPart.csv")
     void secMockTest(Double x, Double trueResult) {
-        FunctionSystem functionSystem = new FunctionSystem(new LnImpl(), new Log2Impl(), new Log3Impl(), new Log5Impl(), new Log10Impl(), new CosImpl(), new CotImpl(), new CscImpl(), secMock, new SinImpl(), new TanImpl());
+        FunctionSystem functionSystem = new FunctionSystem(cosMock, cotMock, cscMock, new SecImpl(), sinMock, tanMock);
 
         runTest(functionSystem, x, trueResult);
     }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/trigPart.csv")
+    void secMockParamTest(Double x, Double trueResult) {
+        FunctionSystem functionSystem = new FunctionSystem(cosMock, cotMock, cscMock, new SecImpl(cosMock), sinMock, tanMock);
+
+        runTest(functionSystem, x, trueResult);
+    }
+
     @ParameterizedTest
     @CsvFileSource(resources = "/trigPart.csv")
     void sinMockTest(Double x, Double trueResult) {
-        FunctionSystem functionSystem = new FunctionSystem(new LnImpl(), new Log2Impl(), new Log3Impl(), new Log5Impl(), new Log10Impl(), new CosImpl(), new CotImpl(), new CscImpl(), new SecImpl(), sinMock, new TanImpl());
+        FunctionSystem functionSystem = new FunctionSystem( cosMock, cotMock, cscMock, secMock, new SinImpl(), tanMock);
 
         runTest(functionSystem, x, trueResult);
     }
@@ -119,7 +145,15 @@ public class TrigonometryIntegration {
     @ParameterizedTest
     @CsvFileSource(resources = "/trigPart.csv")
     void tanMockTest(Double x, Double trueResult) {
-        FunctionSystem functionSystem = new FunctionSystem(new LnImpl(), new Log2Impl(), new Log3Impl(), new Log5Impl(), new Log10Impl(), new CosImpl(), new CotImpl(), new CscImpl(), new SecImpl(), new SinImpl(), tanMock);
+        FunctionSystem functionSystem = new FunctionSystem(cosMock, cotMock, cscMock, secMock, sinMock, new TanImpl());
+
+        runTest(functionSystem, x, trueResult);
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/trigPart.csv")
+    void tanMockParamTest(Double x, Double trueResult) {
+        FunctionSystem functionSystem = new FunctionSystem(cosMock, cotMock, cscMock, secMock, sinMock, new TanImpl(sinMock,cosMock));
 
         runTest(functionSystem, x, trueResult);
     }
@@ -128,7 +162,7 @@ public class TrigonometryIntegration {
     @CsvFileSource(resources = "/trigPart.csv")
     void fullTest(Double x, Double trueResult) {
 
-        FunctionSystem functionSystem = new FunctionSystem(new LnImpl(),new Log2Impl(),new Log3Impl(),new Log5Impl(), new Log10Impl(), new CosImpl(), new CotImpl(), new CscImpl(), new SecImpl(), new SinImpl(), new TanImpl());
+        FunctionSystem functionSystem = new FunctionSystem( new CosImpl(), new CotImpl(), new CscImpl(), new SecImpl(), new SinImpl(), new TanImpl());
 
         runTest(functionSystem, x, trueResult);
     }
@@ -137,7 +171,7 @@ public class TrigonometryIntegration {
     @CsvFileSource(resources = "/trigPart.csv")
     void fullMockTest(Double x, Double trueResult) {
 
-        FunctionSystem functionSystem = new FunctionSystem(new LnImpl(),new Log2Impl(),new Log3Impl(),new Log5Impl(), new Log10Impl(), cosMock, cotMock, cscMock, secMock, sinMock,tanMock);
+        FunctionSystem functionSystem = new FunctionSystem(cosMock, cotMock, cscMock, secMock, sinMock,tanMock);
 
         runTest(functionSystem, x, trueResult);
     }
