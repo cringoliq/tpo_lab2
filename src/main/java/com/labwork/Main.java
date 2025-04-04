@@ -40,7 +40,10 @@ public class Main {
 
         csvWriter.writeResults("log5.csv", 0.1, 5, log5, 0.1);
         csvWriter.writeResults("log10.csv", 0.1, 5, log10, 0.1);
-
         csvWriter.writeResults("system.csv", -5, 5, function, 0.1);
+
+        csvWriter.writeResults("trigPart.csv", -5, 0, function, 0.1);
+        csvWriter.writeResults("logPart.csv", 0.1, 5, function, 0.1);
+
     }
 }
