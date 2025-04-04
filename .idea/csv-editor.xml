@@ -129,6 +129,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/src/main/resources/logPart.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/src/main/resources/sec.csv">
           <value>
             <Attribute>
@@ -157,7 +164,21 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/src/main/resources/trigPart.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/tan.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/trigPart.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
