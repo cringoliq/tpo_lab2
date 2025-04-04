@@ -49,6 +49,33 @@ public class FunctionSystem implements FunctionInterface {
         this.sin = sin;
         this.tan = tan;
     }
+    public FunctionSystem(CosImpl cos, CotImpl cot, CscImpl csc, SecImpl sec, SinImpl sin, TanImpl tan) {
+        this.ln = new LnImpl();
+        this.log2 = new Log2Impl();
+        this.log5 = new Log5Impl();
+        this.log3 = new Log3Impl();
+        this.log10 = new Log10Impl();
+        this.cos = cos;
+        this.cot = cot;
+        this.csc = csc;
+        this.sec = sec;
+        this.sin = sin;
+        this.tan = tan;
+    }
+    public FunctionSystem(LnImpl ln, Log2Impl log2,Log3Impl log3, Log5Impl log5, Log10Impl log10) {
+        this.ln = ln;
+        this.log2 = log2;
+        this.log5 = log5;
+        this.log3 = log3;
+        this.log10 = log10;
+        this.cos = new CosImpl();
+        this.cot = new CotImpl();
+        this.csc = new CscImpl();
+        this.sec = new SecImpl();
+        this.sin = new SinImpl();
+        this.tan = new TanImpl();
+    }
+
     @Override
     public double calculate(double x, double delta) {
         System.out.println("FunctionSystem: calculate(" + x + ", " + delta + ")");

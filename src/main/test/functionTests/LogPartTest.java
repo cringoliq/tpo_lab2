@@ -84,7 +84,7 @@ public class LogPartTest {
     @CsvFileSource(resources = "/logPart.csv")
     void allMockTest(Double x, Double trueResult) {
 
-        FunctionSystem functionSystem = new FunctionSystem(lnMock, log2Mock, log3Mock, log5Mock, log10Mock, new CosImpl(), new CotImpl(), new CscImpl(), new SecImpl(), new SinImpl(), new TanImpl());
+        FunctionSystem functionSystem = new FunctionSystem(lnMock, log2Mock, log3Mock, log5Mock, log10Mock);
 
         runTest(functionSystem, x, trueResult);
     }
@@ -93,7 +93,7 @@ public class LogPartTest {
     @CsvFileSource(resources = "/logPart.csv")
     void lnTest(Double x, Double trueResult) {
 
-        FunctionSystem functionSystem = new FunctionSystem(new LnImpl(),log2Mock, log3Mock, log5Mock, log10Mock, new CosImpl(), new CotImpl(), new CscImpl(), new SecImpl(), new SinImpl(), new TanImpl());
+        FunctionSystem functionSystem = new FunctionSystem(new LnImpl(),log2Mock, log3Mock, log5Mock, log10Mock);
 
         runTest(functionSystem, x, trueResult);
     }
@@ -101,21 +101,21 @@ public class LogPartTest {
     @ParameterizedTest
     @CsvFileSource(resources = "/logPart.csv")
     void log2Test(Double x, Double trueResult) {
-        FunctionSystem functionSystem = new FunctionSystem(lnMock, new Log2Impl(), log3Mock, log5Mock, log10Mock, new CosImpl(), new CotImpl(), new CscImpl(), new SecImpl(), new SinImpl(), new TanImpl());
+        FunctionSystem functionSystem = new FunctionSystem(lnMock, new Log2Impl(), log3Mock, log5Mock, log10Mock);
 
         runTest(functionSystem, x, trueResult);
     }
     @ParameterizedTest
     @CsvFileSource(resources = "/logPart.csv")
     void log3Test(Double x, Double trueResult) {
-        FunctionSystem functionSystem = new FunctionSystem(lnMock, log2Mock, new Log3Impl(), log5Mock, log10Mock, new CosImpl(), new CotImpl(), new CscImpl(), new SecImpl(), new SinImpl(), new TanImpl());
+        FunctionSystem functionSystem = new FunctionSystem(lnMock, log2Mock, new Log3Impl(), log5Mock, log10Mock);
 
         runTest(functionSystem, x, trueResult);
     }
     @ParameterizedTest
     @CsvFileSource(resources = "/logPart.csv")
     void log5Test(Double x, Double trueResult) {
-        FunctionSystem functionSystem = new FunctionSystem(lnMock, log2Mock, log3Mock, new Log5Impl(), log10Mock, new CosImpl(), new CotImpl(), new CscImpl(), new SecImpl(), new SinImpl(), new TanImpl());
+        FunctionSystem functionSystem = new FunctionSystem(lnMock, log2Mock, log3Mock, new Log5Impl(), log10Mock);
 
         runTest(functionSystem, x, trueResult);
     }
@@ -124,7 +124,7 @@ public class LogPartTest {
     @ParameterizedTest
     @CsvFileSource(resources = "/logPart.csv")
     void log10Test(Double x, Double trueResult) {
-        FunctionSystem functionSystem = new FunctionSystem(lnMock, log2Mock, log3Mock, log5Mock, new Log10Impl(), new CosImpl(), new CotImpl(), new CscImpl(), new SecImpl(), new SinImpl(), new TanImpl());
+        FunctionSystem functionSystem = new FunctionSystem(lnMock, log2Mock, log3Mock, log5Mock, new Log10Impl());
 
         runTest(functionSystem, x, trueResult);
     }
@@ -133,7 +133,7 @@ public class LogPartTest {
     @CsvFileSource(resources = "/logPart.csv")
     void fullTest(Double x, Double trueResult) {
 
-        FunctionSystem functionSystem = new FunctionSystem(new LnImpl(),new Log2Impl(),new Log3Impl(),new Log5Impl(), new Log10Impl(), new CosImpl(), new CotImpl(), new CscImpl(), new SecImpl(), new SinImpl(), new TanImpl());
+        FunctionSystem functionSystem = new FunctionSystem(new LnImpl(),new Log2Impl(),new Log3Impl(),new Log5Impl(), new Log10Impl());
 
         runTest(functionSystem, x, trueResult);
     }
