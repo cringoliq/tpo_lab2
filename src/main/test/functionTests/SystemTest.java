@@ -65,16 +65,16 @@ public class SystemTest {
                     double x = Double.parseDouble(record[0]);
                     double res = Double.parseDouble(record[1]);
 
-                    System.out.println("✅ Mocking: " + function.getClass().getSimpleName() + " x = " + x + ", result = " + res);
+                    System.out.println("Mocking: " + function.getClass().getSimpleName() + " x = " + x + ", result = " + res);
 
                     when(function.calculate(doubleThat(val -> Math.abs(val - x) < 1e-9), anyDouble())).thenReturn(res);
 
                 } catch (NumberFormatException e) {
-                    System.out.println("❌ Ошибка парсинга в файле " + path + ": " + record[0] + ", " + record[1]);
+                    System.out.println("Ошибка парсинга в файле " + path + ": " + record[0] + ", " + record[1]);
                 }
             }
         } catch (IOException | CsvException e) {
-            System.out.println("❌ Ошибка при загрузке CSV: " + path);
+            System.out.println("Ошибка при загрузке CSV: " + path);
         }
     }
 

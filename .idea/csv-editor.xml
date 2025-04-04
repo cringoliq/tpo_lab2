@@ -157,13 +157,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="/system.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="/tan.csv">
           <value>
             <Attribute>
