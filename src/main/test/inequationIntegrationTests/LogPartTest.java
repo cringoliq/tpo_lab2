@@ -1,10 +1,9 @@
-package functionTests;
+package inequationIntegrationTests;
 
 
 import com.labwork.FunctionSystem;
 import com.labwork.interfaces.FunctionInterface;
 import com.labwork.logarithms.*;
-import com.labwork.trigonometric.*;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 
@@ -16,7 +15,6 @@ import org.mockito.Mockito;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -98,6 +96,7 @@ public class LogPartTest {
         runTest(functionSystem, x, trueResult);
     }
 
+
     @ParameterizedTest
     @CsvFileSource(resources = "/logPart.csv")
     void log2Test(Double x, Double trueResult) {
@@ -107,6 +106,15 @@ public class LogPartTest {
     }
     @ParameterizedTest
     @CsvFileSource(resources = "/logPart.csv")
+    void log2ParamTest(Double x, Double trueResult) {
+        FunctionSystem functionSystem = new FunctionSystem(lnMock, new Log2Impl(lnMock), log3Mock, log5Mock, log10Mock);
+
+        runTest(functionSystem, x, trueResult);
+    }
+
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/logPart.csv")
     void log3Test(Double x, Double trueResult) {
         FunctionSystem functionSystem = new FunctionSystem(lnMock, log2Mock, new Log3Impl(), log5Mock, log10Mock);
 
@@ -114,8 +122,22 @@ public class LogPartTest {
     }
     @ParameterizedTest
     @CsvFileSource(resources = "/logPart.csv")
+    void log3ParamTest(Double x, Double trueResult) {
+        FunctionSystem functionSystem = new FunctionSystem(lnMock, log2Mock, new Log3Impl(lnMock), log5Mock, log10Mock);
+
+        runTest(functionSystem, x, trueResult);
+    }
+    @ParameterizedTest
+    @CsvFileSource(resources = "/logPart.csv")
     void log5Test(Double x, Double trueResult) {
         FunctionSystem functionSystem = new FunctionSystem(lnMock, log2Mock, log3Mock, new Log5Impl(), log10Mock);
+
+        runTest(functionSystem, x, trueResult);
+    }
+    @ParameterizedTest
+    @CsvFileSource(resources = "/logPart.csv")
+    void log5ParamTest(Double x, Double trueResult) {
+        FunctionSystem functionSystem = new FunctionSystem(lnMock, log2Mock, log3Mock, new Log5Impl(lnMock), log10Mock);
 
         runTest(functionSystem, x, trueResult);
     }
@@ -128,6 +150,15 @@ public class LogPartTest {
 
         runTest(functionSystem, x, trueResult);
     }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/logPart.csv")
+    void log10ParamTest(Double x, Double trueResult) {
+        FunctionSystem functionSystem = new FunctionSystem(lnMock, log2Mock, log3Mock, log5Mock, new Log10Impl(lnMock));
+
+        runTest(functionSystem, x, trueResult);
+    }
+
 
     @ParameterizedTest
     @CsvFileSource(resources = "/logPart.csv")

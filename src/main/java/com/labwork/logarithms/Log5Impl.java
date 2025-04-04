@@ -8,6 +8,9 @@ public class Log5Impl implements FunctionInterface {
     public Log5Impl() {
         this.ln = new LnImpl();
     }
+    public Log5Impl(LnImpl ln) {
+        this.ln = ln;
+    }
 
     @Override
     public double calculate(double x, double epsilon) {

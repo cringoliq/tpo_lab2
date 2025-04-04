@@ -8,6 +8,10 @@ public class Log3Impl implements FunctionInterface {
     public Log3Impl() {
         this.ln = new LnImpl();
     }
+    public Log3Impl(LnImpl ln) {
+        this.ln = ln;
+    }
+
 
     @Override
     public double calculate(double x, double epsilon) {
