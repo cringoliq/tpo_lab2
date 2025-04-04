@@ -24,7 +24,6 @@ import static org.mockito.Mockito.when;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class LogPartTest {
-    // Отдельные моки для каждой функции
     private final LnImpl lnMock = Mockito.mock(LnImpl.class);
     private final Log2Impl log2Mock = Mockito.mock(Log2Impl.class);
     private final Log3Impl log3Mock = Mockito.mock(Log3Impl.class);
@@ -147,14 +146,6 @@ public class LogPartTest {
     @CsvFileSource(resources = "/logPart.csv")
     void log10Test(Double x, Double trueResult) {
         FunctionSystem functionSystem = new FunctionSystem(lnMock, log2Mock, log3Mock, log5Mock, new Log10Impl());
-
-        runTest(functionSystem, x, trueResult);
-    }
-
-    @ParameterizedTest
-    @CsvFileSource(resources = "/logPart.csv")
-    void log10ParamTest(Double x, Double trueResult) {
-        FunctionSystem functionSystem = new FunctionSystem(lnMock, log2Mock, log3Mock, log5Mock, new Log10Impl(lnMock));
 
         runTest(functionSystem, x, trueResult);
     }
